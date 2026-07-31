@@ -4,7 +4,7 @@ A simple shortcut menu for macOS.
 
 This is a maintained fork of [fitztrev/shuttle](https://github.com/fitztrev/shuttle), updated to build natively for Apple Silicon. It remains free and open source under the MIT License.
 
-**Repository:** [https://github.com/dengblom-pcr/shuttle](https://github.com/dengblom-pcr/shuttle)
+**Repository:** [https://github.com/dengblom/shuttle](https://github.com/dengblom/shuttle)
 
 ![How Shuttle works](https://raw.githubusercontent.com/fitztrev/shuttle/gh-pages/images/how-shuttle-works.gif)
 
@@ -17,7 +17,7 @@ This is a maintained fork of [fitztrev/shuttle](https://github.com/fitztrev/shut
 ## Installation (build from source)
 
 ```bash
-git clone https://github.com/dengblom-pcr/shuttle.git
+git clone https://github.com/dengblom/shuttle.git
 cd shuttle
 
 # Optional: regenerate compiled AppleScripts (icons are already committed)
