@@ -13,6 +13,10 @@ on CommandRun(withCmd)
 	tell application "Terminal"
 		reopen
 		activate
-		do script withCmd in front window
+		if (count of windows) is 0 then
+			do script withCmd
+		else
+			do script withCmd in front window
+		end if
 	end tell
 end CommandRun
