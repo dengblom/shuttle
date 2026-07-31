@@ -33,6 +33,41 @@ Copy `build/Release/Shuttle.app` to `/Applications` for day-to-day use (recommen
 
 > Without `SYMROOT`, Xcode writes into `~/Library/Developer/Xcode/DerivedData/`.
 
+### Upgrading from the Intel (Rosetta) build
+
+If you already have the old prebuilt Shuttle (x86_64, often from [fitztrev.github.io/shuttle](http://fitztrev.github.io/shuttle/)) in `/Applications`, replace it with the arm64 build. Your `~/.shuttle.json` config is unchanged and does not need to be migrated.
+
+```bash
+# 1. Quit every running Shuttle (Intel and any local builds)
+pkill -f 'Shuttle.app/Contents/MacOS/Shuttle' || true
+
+# 2. Build this fork (see steps above), then replace the app
+#    Optional backup of the Intel app:
+mv /Applications/Shuttle.app /Applications/Shuttle.app.intel-backup
+
+ditto build/Release/Shuttle.app /Applications/Shuttle.app
+xattr -cr /Applications/Shuttle.app
+
+# 3. Confirm the new binary is native arm64 (not x86_64)
+file /Applications/Shuttle.app/Contents/MacOS/Shuttle
+# Expected: Mach-O 64-bit executable arm64
+
+# 4. Launch from Applications (not from build/ or a leftover Intel copy)
+open -a /Applications/Shuttle.app
+```
+
+Then fix permissions — macOS treats a replaced binary as a new app even if the name matches:
+
+1. **System Settings → Privacy & Security → Accessibility**  
+   - If Shuttle is listed: toggle **off**, then **on**.  
+   - If missing: click **+** and add `/Applications/Shuttle.app`.  
+   Required for `"open_in": "tab"` (Cmd+T / typing into Terminal).
+2. **System Settings → Privacy & Security → Automation**  
+   - Allow Shuttle to control **Terminal** (and **iTerm** if you use it).
+3. Quit Shuttle fully and reopen from **Applications**.
+
+Avoid running the old Intel `/Applications` app and a `build/Release` copy at the same time — both share the `shuttle.Shuttle` bundle id and will fight for the menu bar / TCC grants.
+
 ### Prepare / assets
 
 | Asset | Location | Notes |
