@@ -490,10 +490,10 @@
         if(themePref == 0) {
             if( [terminalPref isEqualToString:@"iterm"] ){
                 //we have no global theme and there is no theme in the command settings.
-                //Forcing the Default profile for iTerm and the basic profile for Terminal.app
+                //Forcing the Default profile for iTerm and the Basic profile for Terminal.app
                 terminalTheme = @"Default";
             }else{
-                terminalTheme = @"basic";
+                terminalTheme = @"Basic";
             }
             //We have a global setting using this as the theme.
         }else {
@@ -563,8 +563,11 @@
     else {
         passParameters = @[escapedObject, terminalTitle];
     }
-    // Check if Url
-    if (url)
+    // Only treat cmd as a URL when it has an explicit scheme (http/https/ssh:///…).
+    // NSURL URLWithString: returns a non-nil object for shell commands like
+    // "ssh user@host" (scheme nil), which made openURL fail with Finder error -50
+    // and skipped the Terminal/iTerm AppleScript path.
+    if (url && [[url scheme] length] > 0)
         {
             [[NSWorkspace sharedWorkspace] openURL:url];
             
