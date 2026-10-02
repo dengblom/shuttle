@@ -23,7 +23,7 @@
 
 ## Phase 2 — Build & project hygiene
 - [x] Add Shuttle.xcodeproj/xcshareddata/xcschemes/Shuttle.xcscheme for CLI builds
-- [x] Bump MACOSX_DEPLOYMENT_TARGET (10.8/10.9 → 11.0; Apple Silicon Macs require Big Sur minimum anyway)
+- [x] Bump MACOSX_DEPLOYMENT_TARGET (10.8/10.9 -> 12.0; required by current Xcode SDK support)
 - [x] Upgrade project format (objectVersion 54 / LastUpgradeCheck 2600 / compatibilityVersion Xcode 14.0)
 - [x] Keep committed `.scpt` + icons; add `apple-scripts/prepare.sh` and document in README
 - [x] Add basic build instructions to README (scheme-based `xcodebuild`, prepare script, permissions)
