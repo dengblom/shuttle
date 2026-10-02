@@ -11,7 +11,7 @@ This is a maintained fork of [fitztrev/shuttle](https://github.com/fitztrev/shut
 ## Requirements
 
 - Apple Silicon Mac (arm64)
-- macOS 11 Big Sur or later
+- macOS 12 Monterey or later
 - Xcode (full app, not only Command Line Tools)
 
 ## Installation (build from source)
